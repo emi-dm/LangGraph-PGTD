@@ -1,3 +1,28 @@
+<table bgcolor="#ffffff" width="100%" style="width: 100%; border-collapse: collapse; border: 1px solid #d0d0d0; background-color: #ffffff !important; font-family: Arial, sans-serif; opacity: 1 !important;">
+  <tr bgcolor="#ffffff" style="background-color: #ffffff !important;">
+    <td align="center" bgcolor="#ffffff" style="padding: 25px; vertical-align: middle; background-color: #ffffff !important;">
+      <div style="background-color: #ffffff !important; padding: 10px;">
+        <img src="https://talentodigitalextremadura.com/wp-content/uploads/2025/05/junta-ext-transforma2.png" height="140" style="height: 140px; width: auto; display: inline-block; background-color: #ffffff !important;">
+      </div>
+      <hr style="border: 0; border-top: 1px solid #dddddd; width: 85%; margin: 20px auto;">
+      <table width="100%" bgcolor="#ffffff" style="width: 100%; border-collapse: collapse; background-color: #ffffff !important;">
+        <tr bgcolor="#ffffff" style="background-color: #ffffff !important;">
+          <td align="center" width="33.3%" bgcolor="#ffffff" style="padding: 10px; background-color: #ffffff !important; border: none;">
+            <img src="https://talentodigitalextremadura.com/wp-content/uploads/2024/10/Grafismo-UEx-Color-3.png" height="110" style="height: 110px; width: auto; background-color: #ffffff !important;">
+          </td>
+          <td align="center" width="33.3%" bgcolor="#ffffff" style="padding: 10px; background-color: #ffffff !important; border: none;">
+            <img src="https://talentodigitalextremadura.com/wp-content/uploads/2026/01/logointia.png" height="110" style="height: 110px; width: auto; background-color: #ffffff !important;">
+          </td>
+          <td align="center" width="33.3%" bgcolor="#ffffff" style="padding: 10px; background-color: #ffffff !important; border: none;">
+            <img src="https://talentodigitalextremadura.com/wp-content/uploads/2024/10/Group-59651.png" height="110" style="height: 110px; width: auto; background-color: #ffffff !important;">
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+
 # LangGraph-PGTD
 
 Repositorio de ejemplos progresivos para aprender a construir agentes con LangGraph, desde lo más básico hasta patrones avanzados.
