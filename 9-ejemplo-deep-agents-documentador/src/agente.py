@@ -336,7 +336,7 @@ def crear_modelo():
         Instancia de ChatOpenAI configurada para OpenRouter.
     """
     return ChatOpenAI(
-        model=os.environ.get("OPENROUTER_MODEL", "openai/gpt-4.1-mini"),
+        model=os.environ.get("OPENROUTER_MODEL", "openrouter/hunter-alpha"),
         api_key=os.environ["OPENROUTER_API_KEY"],
         base_url="https://openrouter.ai/api/v1",
         temperature=0.7

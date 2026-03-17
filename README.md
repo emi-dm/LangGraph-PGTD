@@ -15,13 +15,41 @@ Repositorio de ejemplos progresivos para aprender a construir agentes con LangGr
 | 7 | [7-ejemplo-agente-con-interrupciones](./ejemplos/7-ejemplo-agente-con-interrupciones/) | Avanzado | Human-in-the-Loop con interrupciones |
 | 8 | [8-ejemplo-agente-con-langfuse](./ejemplos/8-ejemplo-agente-con-langfuse/) | Intermedio | Observabilidad con Langfuse |
 | 9 | [9-ejemplo-deep-agents-documentador](./ejemplos/9-ejemplo-deep-agents-documentador/) | Avanzado | Sistema multiagente documentador |
+| 10 | [10-ejemplo-deep-agents-investigador](./ejemplos/10-ejemplo-deep-agents-investigador/) | Avanzado | Sistema multiagente investigador académico |
+
+## � Obtención de API Keys
+
+Para ejecutar los ejemplos, necesitarás obtener las siguientes API keys:
+
+| Servicio | URL para obtener la API Key | Uso en el curso |
+|----------|----------------------------|-----------------|
+| **Tavily** | [app.tavily.com](https://app.tavily.com/) | Búsqueda web optimizada para LLMs (Ejemplo 9) |
+| **Langfuse** | [cloud.langfuse.com](https://cloud.langfuse.com/) | Observabilidad y trazas de ejecuciones de agentes (Ejemplos 8, 9, 10) |
+
+> **Nota:** Los servicios de Semantic Scholar y arXiv (Ejemplo 10) son gratuitos y no requieren API key.
+
+### Pasos para obtener las API Keys
+
+1. **Tavily** (requerida para el Ejemplo 9):
+   - Ve a [app.tavily.com](https://app.tavily.com/)
+   - Crea una cuenta gratuita
+   - En el dashboard, copia tu API key
+   - El plan gratuito incluye 1,000 búsquedas/mes
+
+2. **Langfuse** (requerida para Ejemplos 8, 9 y 10):
+   - Ve a [cloud.langfuse.com](https://cloud.langfuse.com/)
+   - Crea una cuenta gratuita
+   - Crea un nuevo proyecto
+   - Ve a **Settings** → **API Keys**
+   - Copia tanto la **Secret Key** como la **Public Key**
+   - El plan gratuito incluye 50,000 observaciones/mes
 
 ## 🚀 Inicio Rápido
 
 ### Prerrequisitos
 
 - Python 3.11+
-- API key de OpenRouter (u otro proveedor compatible)
+- API keys configuradas (ver sección anterior)
 
 ### Configuración
 
@@ -70,7 +98,8 @@ LangGraph-PGTD/
     ├── 6-ejemplo-agente-con-streaming/    # Streaming
     ├── 7-ejemplo-agente-con-interrupciones/ # Human-in-the-Loop
     ├── 8-ejemplo-agente-con-langfuse/     # Observabilidad
-    └── 9-ejemplo-deep-agents-documentador/ # Multiagente
+    ├── 9-ejemplo-deep-agents-documentador/ # Multiagente
+    └── 10-ejemplo-deep-agents-investigador/ # Investigación académica
 ```
 
 ## 🛠️ Dependencias Comunes

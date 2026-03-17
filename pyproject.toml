@@ -13,6 +13,8 @@ dependencies = [
     "langchain>=1.2.12",
     "deepagents>=0.4.11",
     "tavily>=1.1.0",
+    "markitdown[all]>=0.1.5",
+    "pytest>=9.0.2",
 ]
 
 [project.optional-dependencies]

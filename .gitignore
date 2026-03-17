@@ -43,3 +43,4 @@ logs/
 !pyproject.toml
 *.db
 docs/*
+papers/*
