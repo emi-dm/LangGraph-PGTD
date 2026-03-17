@@ -82,7 +82,7 @@ def main():
     print("🧠 Agente LangGraph con Memoria (modo interactivo)")
     print("=" * 60)
     print("Escribe tu mensaje y presiona Enter.")
-    print("Escribe 'salir' para terminar la conversación.")
+    print("Escribe 'quit' para terminar la conversación.")
     print("=" * 60)
     print()
 

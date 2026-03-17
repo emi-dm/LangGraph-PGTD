@@ -464,7 +464,7 @@ def modo_interactivo():
     print()
     print("Comandos disponibles:")
     print("  - Escribe un tema para generar documentación")
-    print("  - 'salir' para terminar")
+    print("  - 'quit' para terminar")
     print()
 
     # Verificar variables de entorno

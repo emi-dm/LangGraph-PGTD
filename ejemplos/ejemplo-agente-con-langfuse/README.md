@@ -1,8 +1,19 @@
 # Ejemplo: Agente LangGraph con Langfuse
 
+**Nivel:** Intermedio
+
 Este ejemplo demuestra cómo integrar [Langfuse](https://langfuse.com/) con LangGraph para obtener observabilidad completa de tu agente, incluyendo memoria conversacional, herramientas y streaming.
 
-## Características
+## 🎯 Conceptos Clave
+
+| Concepto | Descripción |
+|----------|-------------|
+| **Langfuse** | Plataforma de observabilidad para aplicaciones LLM |
+| **CallbackHandler** | Integración automática con LangChain/LangGraph |
+| **Trazas** | Registro detallado de cada ejecución del agente |
+| **Metadata** | Etiquetas y sesiones para organizar trazas |
+
+## 🚀 Características
 
 - 🔍 **Observabilidad con Langfuse**: Trazas detalladas de cada ejecución
 - 🧠 **Memoria conversacional**: `InMemorySaver` para mantener contexto dentro de la sesión
@@ -11,42 +22,47 @@ Este ejemplo demuestra cómo integrar [Langfuse](https://langfuse.com/) con Lang
   - `fetch_url`: Obtiene contenido de una URL
 - ⚡ **Streaming**: Tokens del LLM aparecen en tiempo real
 
-## ¿Qué es Langfuse?
+## 📁 Estructura del Proyecto
 
-Langfuse es una plataforma de observabilidad para aplicaciones LLM que te permite:
-- 🔍 **Trazas detalladas**: Ver cada llamada al LLM, herramientas utilizadas y flujos de ejecución
-- 📊 **Métricas**: Latencia, costos, uso de tokens
-- 🏷️ **Etiquetas y sesiones**: Organizar trazas por usuario, sesión o tags personalizados
-- 🐛 **Debugging**: Identificar problemas y cuellos de botella
-
-## Configuración
-
-### 1. Variables de entorno
-
-Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
-
-```env
-# Langfuse
-LANGFUSE_SECRET_KEY="sk-lf-..."
-LANGFUSE_PUBLIC_KEY="pk-lf-..."
-LANGFUSE_BASE_URL="https://cloud.langfuse.com"
-
-# OpenRouter (o tu proveedor LLM preferido)
-OPENROUTER_API_KEY="sk-or-..."
 ```
+ejemplo-agente-con-langfuse/
+├── src/
+│   ├── __init__.py
+│   └── agente.py          # Agente con observabilidad Langfuse
+├── pyproject.toml          # Dependencias
+└── README.md               # Este archivo
+```
+
+## 🛠️ Instalación
+
+```bash
+# Crear entorno virtual
+python -m venv .venv
+source .venv/bin/activate
+
+# Instalar dependencias
+pip install -e .
+
+# Configurar API keys (desde la raíz del repositorio)
+cp ../../.env.example ../../.env
+# Edita .env y añade tus API keys
+```
+
+## 🔑 Variables de Entorno
+
+| Variable | Descripción | Requerida |
+|----------|-------------|-----------|
+| `OPENROUTER_API_KEY` | API key de OpenRouter | ✅ Sí |
+| `LANGFUSE_SECRET_KEY` | Secret key de Langfuse | ✅ Sí |
+| `LANGFUSE_PUBLIC_KEY` | Public key de Langfuse | ✅ Sí |
+| `LANGFUSE_BASE_URL` | URL de Langfuse (default: cloud) | Opcional |
 
 Puedes obtener las claves de Langfuse registrándote gratis en [cloud.langfuse.com](https://cloud.langfuse.com/).
 
-### 2. Instalar dependencias
+## ▶️ Ejecución
 
 ```bash
-uv sync
-```
-
-## Ejecución
-
-```bash
-uv run ejemplos/ejemplo-agente-con-langfuse/src/agente.py
+python src/agente.py
 ```
 
 ## Conceptos clave
@@ -134,7 +150,11 @@ Después de ejecutar el agente, visita [cloud.langfuse.com](https://cloud.langfu
 - **Generations**: Detalles de cada llamada al LLM (input, output, tokens, costo)
 - **Scores**: Métricas y evaluaciones
 
-## Más información
+## 📖 Siguiente Paso
+
+Explora [ejemplo-deep-agents-documentador](../ejemplo-deep-agents-documentador/) para aprender sobre sistemas multiagentes avanzados.
+
+## 📚 Recursos
 
 - [Documentación de Langfuse](https://langfuse.com/docs)
 - [Integración con LangChain/LangGraph](https://langfuse.com/integrations/frameworks/langchain)

@@ -121,7 +121,7 @@ def main():
     print()
     print("Escribe tu mensaje y presiona Enter.")
     print("Comandos especiales:")
-    print("  - 'salir': Terminar la conversación")
+    print("  - 'quit': Terminar la conversación")
     print("  - 'historial': Ver el historial completo")
     print("  - 'nueva': Iniciar una nueva sesión (nuevo thread_id)")
     print("=" * 60)
@@ -148,7 +148,7 @@ def main():
             continue
 
         # Comandos especiales
-        if mensaje_usuario.lower() == "salir":
+        if mensaje_usuario.lower() in ("quit", "salir", "exit"):
             print("👋 ¡Hasta luego! Tu conversación está guardada en SQLite.")
             break
 

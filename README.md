@@ -10,13 +10,16 @@ Repositorio de ejemplos progresivos para aprender a construir agentes con LangGr
 | [ejemplo-agente-con-tools](./ejemplos/ejemplo-agente-con-tools/) | Intermedio | Agente con herramientas de archivos |
 | [ejemplo-agente-con-interrupciones](./ejemplos/ejemplo-agente-con-interrupciones/) | Avanzado | Human-in-the-Loop con interrupciones |
 | [ejemplo-agente-con-memoria](./ejemplos/ejemplo-agente-con-memoria/) | Intermedio | Memoria a corto plazo con InMemorySaver |
+| [ejemplo-agente-con-memoria-sqlite](./ejemplos/ejemplo-agente-con-memoria-sqlite/) | Intermedio | Memoria persistente con SQLite |
 | [ejemplo-agente-con-streaming](./ejemplos/ejemplo-agente-con-streaming/) | Intermedio | Streaming de tokens en tiempo real |
+| [ejemplo-agente-con-langfuse](./ejemplos/ejemplo-agente-con-langfuse/) | Intermedio | Observabilidad con Langfuse |
+| [ejemplo-deep-agents-documentador](./ejemplos/ejemplo-deep-agents-documentador/) | Avanzado | Sistema multiagente documentador |
 
 ## 🚀 Inicio Rápido
 
 ### Prerrequisitos
 
-- Python 3.10+
+- Python 3.11+
 - API key de OpenRouter (u otro proveedor compatible)
 
 ### Configuración
@@ -40,20 +43,13 @@ Repositorio de ejemplos progresivos para aprender a construir agentes con LangGr
 
 4. **Crea un entorno virtual** (recomendado):
    ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # En macOS/Linux
+   uv sync
    ```
-
-5. **Instala las dependencias**:
-   ```bash
-   pip install -e .
-   ```
-
-6. **Ejecuta el ejemplo**:
+5. **Ejecuta el ejemplo**:
    ```bash
    langgraph dev  # Para ejemplos con langgraph.json
    # o
-   python src/agente.py  # Para ejemplos sin langgraph.json
+   uv run src/agente.py  # Para ejemplos sin langgraph.json
    ```
 
 ## 📁 Estructura del Repositorio
@@ -65,12 +61,14 @@ LangGraph-PGTD/
 ├── README.md                 # Este archivo
 ├── pyproject.toml            # Configuración común del proyecto
 └── ejemplos/
-    ├── README.md             # Índice de ejemplos
     ├── ejemplo-agente-basico/
     ├── ejemplo-agente-con-tools/
     ├── ejemplo-agente-con-interrupciones/
     ├── ejemplo-agente-con-memoria/
-    └── ejemplo-agente-con-streaming/
+    ├── ejemplo-agente-con-memoria-sqlite/
+    ├── ejemplo-agente-con-streaming/
+    ├── ejemplo-agente-con-langfuse/
+    └── ejemplo-deep-agents-documentador/
 ```
 
 ## 🛠️ Dependencias Comunes

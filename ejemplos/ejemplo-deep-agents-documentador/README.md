@@ -1,6 +1,17 @@
-# Sistema Multiagente Documentador con Deep Agents
+# Ejemplo: Sistema Multiagente Documentador con Deep Agents
+
+**Nivel:** Avanzado
 
 Este ejemplo demuestra cómo crear un sistema de documentación multiagente usando **Deep Agents**, **Tavily**, **OpenRouter** y **Langfuse**, donde múltiples subagentes especializados colaboran para investigar, escribir y revisar documentación técnica en formato Markdown.
+
+## 🎯 Conceptos Clave
+
+| Concepto | Descripción |
+|----------|-------------|
+| **Deep Agents SDK** | Framework para crear agentes complejos con subagentes |
+| **Sistema Multiagente** | Múltiples agentes especializados colaborando |
+| **Tavily** | Búsqueda web para investigación técnica |
+| **Langfuse** | Observabilidad y trazas detalladas de ejecuciones |
 
 ## 🏗️ Arquitectura
 
@@ -19,16 +30,6 @@ Este ejemplo demuestra cómo crear un sistema de documentación multiagente usan
 └───────────────┘ └───────────────┘ └───────────────┘
 ```
 
-## 🎯 Conceptos Demostrados
-
-- **Deep Agents SDK**: Uso de `create_deep_agent` para crear agentes complejos
-- **Sistema Multiagente**: Subagentes especializados con roles definidos
-- **Integración Tavily**: Búsqueda web para investigación técnica
-- **OpenRouter**: Acceso unificado a múltiples modelos LLM (Claude, GPT-4, Llama, etc.)
-- **Langfuse**: Observabilidad y trazas detalladas de ejecuciones
-- **Sistema de Archivos**: Gestión de documentos generados
-- **Planificación**: Descomposición automática de tareas complejas
-
 ## 🤖 Subagentes
 
 ### 1. Investigador
@@ -46,57 +47,54 @@ Este ejemplo demuestra cómo crear un sistema de documentación multiagente usan
 - Mejora claridad y estructura
 - Corrige errores y asegura consistencia
 
-## 🚀 Inicio Rápido
+## 📁 Estructura del Proyecto
 
-### Prerrequisitos
-
-- Python >= 3.10
-- API key de [OpenRouter](https://openrouter.ai/) (acceso a Claude, GPT-4, Llama, etc.)
-- API key de [Tavily](https://tavily.com/) (búsqueda web)
-- API keys de [Langfuse](https://langfuse.com/) (observabilidad)
-
-### Configuración
-
-1. **Copia el archivo de ejemplo**:
-
-```bash
-cp .env.example .env
+```
+ejemplo-deep-agents-documentador/
+├── src/
+│   └── agente.py          # Sistema multiagente documentador
+├── pyproject.toml          # Dependencias
+└── README.md               # Este archivo
 ```
 
-2. **Configura las variables de entorno** en `.env`:
+## 🛠️ Instalación
 
 ```bash
-# OpenRouter - Acceso unificado a múltiples modelos
-OPENROUTER_API_KEY=sk-or-...
-OPENROUTER_MODEL=anthropic/claude-sonnet-4
+# Crear entorno virtual
+python -m venv .venv
+source .venv/bin/activate
 
-# Tavily - Búsqueda web
-TAVILY_API_KEY=tvly-...
+# Instalar dependencias
+pip install -e .
 
-# Langfuse - Observabilidad
-LANGFUSE_SECRET_KEY=sk-lf-...
-LANGFUSE_PUBLIC_KEY=pk-lf-...
-LANGFUSE_HOST=https://cloud.langfuse.com
+# Configurar API keys (desde la raíz del repositorio)
+cp ../../.env.example ../../.env
+# Edita .env y añade tus API keys
 ```
 
-2. **Instala las dependencias**:
+## 🔑 Variables de Entorno
 
-```bash
-uv sync
-```
+| Variable | Descripción | Requerida |
+|----------|-------------|-----------|
+| `OPENROUTER_API_KEY` | API key de OpenRouter | ✅ Sí |
+| `OPENROUTER_MODEL` | Modelo a usar (default: anthropic/claude-sonnet-4) | Opcional |
+| `TAVILY_API_KEY` | API key de Tavily para búsqueda web | ✅ Sí |
+| `LANGFUSE_SECRET_KEY` | Secret key de Langfuse | ✅ Sí |
+| `LANGFUSE_PUBLIC_KEY` | Public key de Langfuse | ✅ Sí |
+| `LANGFUSE_HOST` | URL de Langfuse (default: cloud) | Opcional |
 
-### Ejecución
+## ▶️ Ejecución
 
 **Modo estándar** (genera documentación de ejemplo):
 
 ```bash
-uv run ejemplos/ejemplo-deep-agents-documentador/src/agente.py
+python src/agente.py
 ```
 
 **Modo interactivo** (genera documentación bajo demanda):
 
 ```bash
-uv run ejemplos/ejemplo-deep-agents-documentador/src/agente.py --interactivo
+python src/agente.py --interactivo
 ```
 
 ## 📝 Ejemplo de Uso

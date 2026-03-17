@@ -78,7 +78,7 @@ def main():
     print("=" * 60)
     print("Escribe tu mensaje y presiona Enter.")
     print("Los tokens aparecerán en tiempo real.")
-    print("Escribe 'salir' para terminar.")
+    print("Escribe 'quit' para terminar.")
     print("=" * 60)
     print()
 

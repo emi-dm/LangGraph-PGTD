@@ -152,9 +152,9 @@ resultado = graph.invoke(
 Este ejemplo usa `MemorySaver` como checkpointer para mantener memoria a corto plazo:
 
 ```python
-from langgraph.checkpoint.memory import MemorySaver
+from langgraph.checkpoint.memory import InMemorySaver
 
-memoria = MemorySaver()
+memoria = InMemorySaver()
 app = workflow.compile(checkpointer=memoria)
 ```
 
