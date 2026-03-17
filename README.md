@@ -31,18 +31,18 @@ Repositorio de ejemplos progresivos para aprender a construir agentes con LangGr
 
 | # | Ejemplo | Nivel | Descripción |
 |---|---------|-------|-------------|
-| 1 | [1-ejemplo-state-pydantic](./ejemplos/1-ejemplo-state-pydantic/) | Básico | State con Pydantic (sin LLMs) - Validación y concatenación |
-| 2 | [2-ejemplo-agente-basico](./ejemplos/2-ejemplo-agente-basico/) | Principiante | Agente simple sin herramientas |
-| 3 | [3-ejemplo-agente-con-tools](./ejemplos/3-ejemplo-agente-con-tools/) | Intermedio | Agente con herramientas de archivos |
-| 4 | [4-ejemplo-agente-con-memoria](./ejemplos/4-ejemplo-agente-con-memoria/) | Intermedio | Memoria a corto plazo con InMemorySaver |
-| 5 | [5-ejemplo-agente-con-memoria-sqlite](./ejemplos/5-ejemplo-agente-con-memoria-sqlite/) | Intermedio | Memoria persistente con SQLite |
-| 6 | [6-ejemplo-agente-con-streaming](./ejemplos/6-ejemplo-agente-con-streaming/) | Intermedio | Streaming de tokens en tiempo real |
-| 7 | [7-ejemplo-agente-con-interrupciones](./ejemplos/7-ejemplo-agente-con-interrupciones/) | Avanzado | Human-in-the-Loop con interrupciones |
-| 8 | [8-ejemplo-agente-con-langfuse](./ejemplos/8-ejemplo-agente-con-langfuse/) | Intermedio | Observabilidad con Langfuse |
-| 9 | [9-ejemplo-deep-agents-documentador](./ejemplos/9-ejemplo-deep-agents-documentador/) | Avanzado | Sistema multiagente documentador |
-| 10 | [10-ejemplo-deep-agents-investigador](./ejemplos/10-ejemplo-deep-agents-investigador/) | Avanzado | Sistema multiagente investigador académico |
+| 1 | [1-ejemplo-state-pydantic](./1-ejemplo-state-pydantic/) | Básico | State con Pydantic (sin LLMs) - Validación y concatenación |
+| 2 | [2-ejemplo-agente-basico](./2-ejemplo-agente-basico/) | Principiante | Agente simple sin herramientas |
+| 3 | [3-ejemplo-agente-con-tools](./3-ejemplo-agente-con-tools/) | Intermedio | Agente con herramientas de archivos |
+| 4 | [4-ejemplo-agente-con-memoria](./4-ejemplo-agente-con-memoria/) | Intermedio | Memoria a corto plazo con InMemorySaver |
+| 5 | [5-ejemplo-agente-con-memoria-sqlite](./5-ejemplo-agente-con-memoria-sqlite/) | Intermedio | Memoria persistente con SQLite |
+| 6 | [6-ejemplo-agente-con-streaming](./6-ejemplo-agente-con-streaming/) | Intermedio | Streaming de tokens en tiempo real |
+| 7 | [7-ejemplo-agente-con-interrupciones](./7-ejemplo-agente-con-interrupciones/) | Avanzado | Human-in-the-Loop con interrupciones |
+| 8 | [8-ejemplo-agente-con-langfuse](./8-ejemplo-agente-con-langfuse/) | Intermedio | Observabilidad con Langfuse |
+| 9 | [9-ejemplo-deep-agents-documentador](./9-ejemplo-deep-agents-documentador/) | Avanzado | Sistema multiagente documentador |
+| 10 | [10-ejemplo-deep-agents-investigador](./10-ejemplo-deep-agents-investigador/) | Avanzado | Sistema multiagente investigador académico |
 
-## � Obtención de API Keys
+## 🔑 Obtención de API Keys
 
 Para ejecutar los ejemplos, necesitarás obtener las siguientes API keys:
 
@@ -92,7 +92,7 @@ Para ejecutar los ejemplos, necesitarás obtener las siguientes API keys:
 
 3. **Elige un ejemplo y navega a su directorio**:
    ```bash
-   cd ejemplos/2-ejemplo-agente-basico
+   cd 2-ejemplo-agente-basico
    ```
 
 4. **Crea un entorno virtual** (recomendado):
@@ -114,17 +114,18 @@ LangGraph-PGTD/
 ├── .gitignore                # Archivos ignorados por Git
 ├── README.md                 # Este archivo
 ├── pyproject.toml            # Configuración común del proyecto
-└── ejemplos/
-    ├── 1-ejemplo-state-pydantic/          # State con Pydantic (sin LLMs)
-    ├── 2-ejemplo-agente-basico/           # Agente simple
-    ├── 3-ejemplo-agente-con-tools/        # Agente con herramientas
-    ├── 4-ejemplo-agente-con-memoria/      # Memoria InMemory
-    ├── 5-ejemplo-agente-con-memoria-sqlite/ # Memoria SQLite
-    ├── 6-ejemplo-agente-con-streaming/    # Streaming
-    ├── 7-ejemplo-agente-con-interrupciones/ # Human-in-the-Loop
-    ├── 8-ejemplo-agente-con-langfuse/     # Observabilidad
-    ├── 9-ejemplo-deep-agents-documentador/ # Multiagente
-    └── 10-ejemplo-deep-agents-investigador/ # Investigación académica
+├── 1-ejemplo-state-pydantic/          # State con Pydantic (sin LLMs)
+├── 2-ejemplo-agente-basico/           # Agente simple
+├── 3-ejemplo-agente-con-tools/        # Agente con herramientas
+├── 4-ejemplo-agente-con-memoria/      # Memoria InMemory
+├── 5-ejemplo-agente-con-memoria-sqlite/ # Memoria SQLite
+├── 6-ejemplo-agente-con-streaming/    # Streaming
+├── 7-ejemplo-agente-con-interrupciones/ # Human-in-the-Loop
+├── 8-ejemplo-agente-con-langfuse/     # Observabilidad
+├── 9-ejemplo-deep-agents-documentador/ # Multiagente
+├── 10-ejemplo-deep-agents-investigador/ # Investigación académica
+├── informes/                          # Informes generados
+└── papers/                            # Papers académicos
 ```
 
 ## 🛠️ Dependencias Comunes
