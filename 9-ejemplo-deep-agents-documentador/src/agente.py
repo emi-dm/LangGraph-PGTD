@@ -6,7 +6,7 @@ usando Deep Agents, donde múltiples subagentes especializados colaboran
 para investigar, escribir y revisar documentación técnica en formato Markdown.
 
 Ejecución:
-    uv run ejemplos/ejemplo-deep-agents-documentador/src/agente.py
+    uv run ejemplos/9-ejemplo-deep-agents-documentador/src/agente.py
 
 Conceptos demostrados:
 - Deep Agents SDK con create_deep_agent
@@ -31,6 +31,14 @@ Arquitectura del sistema:
 │   Investigador │ │    Escritor   │ │   Revisor     │
 │  (Tavily)     │ │  (Markdown)   │ │  (Quality)    │
 └───────────────┘ └───────────────┘ └───────────────┘
+
+Flujo de trabajo:
+1. Usuario solicita documentación sobre un tema
+2. Orquestador analiza y planifica el flujo
+3. Investigador busca información con Tavily
+4. Escritor crea el documento Markdown
+5. Revisor mejora y pule el documento
+6. Sistema guarda el documento final en docs/
 """
 
 import os
