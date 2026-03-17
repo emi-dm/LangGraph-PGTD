@@ -6,7 +6,7 @@ trazas detalladas de las ejecuciones del agente, incluyendo llamadas al LLM,
 uso de herramientas, latencias y costos.
 
 Ejecución:
-    uv run ejemplos/ejemplo-agente-con-langfuse/src/agente.py
+    uv run ejemplos/8-ejemplo-agente-con-langfuse/src/agente.py
 
 Conceptos demostrados:
 - Integración de Langfuse con LangGraph

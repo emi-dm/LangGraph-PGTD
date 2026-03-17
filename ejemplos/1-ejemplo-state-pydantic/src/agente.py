@@ -190,6 +190,162 @@ def demo_visualizacion_grafo():
 
 
 # =============================================================================
+# DEMOSTRACIÓN: ¿POR QUÉ CONCATENAR CON EL STATE ANTERIOR?
+# =============================================================================
+
+# --- Nodos INCORRECTOS: sobrescriben en lugar de concatenar ---
+
+def nodo_incorrecto_1(state: MiState) -> dict:
+    """❌ INCORRECTO: Retorna solo el nuevo mensaje, pierde los anteriores."""
+    return {
+        "mensajes": ["Mensaje del nodo 1"],  # ¡Sobrescribe todo!
+        "contador": state.contador + 1,
+    }
+
+
+def nodo_incorrecto_2(state: MiState) -> dict:
+    """❌ INCORRECTO: Retorna solo el nuevo mensaje, pierde los anteriores."""
+    return {
+        "mensajes": ["Mensaje del nodo 2"],  # ¡Sobrescribe todo!
+        "contador": state.contador + 1,
+    }
+
+
+def nodo_incorrecto_3(state: MiState) -> dict:
+    """❌ INCORRECTO: Retorna solo el nuevo mensaje, pierde los anteriores."""
+    return {
+        "mensajes": ["Mensaje del nodo 3"],  # ¡Sobrescribe todo!
+        "contador": state.contador + 1,
+    }
+
+
+# --- Nodos CORRECTOS: concatenan con el state anterior ---
+
+def nodo_correcto_1(state: MiState) -> dict:
+    """✅ CORRECTO: Concatena el nuevo mensaje con los anteriores."""
+    return {
+        "mensajes": state.mensajes + ["Mensaje del nodo 1"],
+        "contador": state.contador + 1,
+    }
+
+
+def nodo_correcto_2(state: MiState) -> dict:
+    """✅ CORRECTO: Concatena el nuevo mensaje con los anteriores."""
+    return {
+        "mensajes": state.mensajes + ["Mensaje del nodo 2"],
+        "contador": state.contador + 1,
+    }
+
+
+def nodo_correcto_3(state: MiState) -> dict:
+    """✅ CORRECTO: Concatena el nuevo mensaje con los anteriores."""
+    return {
+        "mensajes": state.mensajes + ["Mensaje del nodo 3"],
+        "contador": state.contador + 1,
+    }
+
+
+def crear_grafo_incorrecto():
+    """Grafo con nodos que SOBRESCRIBEN el estado (INCORRECTO)."""
+    workflow = StateGraph(MiState)
+    workflow.add_node("nodo_1", nodo_incorrecto_1)
+    workflow.add_node("nodo_2", nodo_incorrecto_2)
+    workflow.add_node("nodo_3", nodo_incorrecto_3)
+    workflow.add_edge(START, "nodo_1")
+    workflow.add_edge("nodo_1", "nodo_2")
+    workflow.add_edge("nodo_2", "nodo_3")
+    workflow.add_edge("nodo_3", END)
+    return workflow.compile()
+
+
+def crear_grafo_correcto():
+    """Grafo con nodos que CONCATENAN con el estado (CORRECTO)."""
+    workflow = StateGraph(MiState)
+    workflow.add_node("nodo_1", nodo_correcto_1)
+    workflow.add_node("nodo_2", nodo_correcto_2)
+    workflow.add_node("nodo_3", nodo_correcto_3)
+    workflow.add_edge(START, "nodo_1")
+    workflow.add_edge("nodo_1", "nodo_2")
+    workflow.add_edge("nodo_2", "nodo_3")
+    workflow.add_edge("nodo_3", END)
+    return workflow.compile()
+
+
+def demo_concatenacion_vs_sobrescritura():
+    """
+    Demuestra por qué es CRÍTICO concatenar con el state anterior.
+
+    LangGraph NO acumula automáticamente los retornos de los nodos.
+    Cada nodo recibe el state actual y debe decidir cómo actualizarlo.
+    Si retornas solo el valor nuevo, PIERDES los valores anteriores.
+    """
+    print("\n" + "=" * 60)
+    print("DEMOSTRACIÓN: Concatenación vs Sobrescritura")
+    print("=" * 60)
+
+    estado_inicial = MiState(contador=0, mensajes=[], nombre="Emi")
+
+    # --- Ejecutar grafo INCORRECTO ---
+    print("\n" + "-" * 60)
+    print("❌ GRAFO INCORRECTO (sobrescribe mensajes)")
+    print("-" * 60)
+
+    grafo_malo = crear_grafo_incorrecto()
+    resultado_malo = grafo_malo.invoke(estado_inicial)
+
+    print(f"\n📥 Estado inicial: mensajes = []")
+    print(f"\n📤 Estado final:")
+    print(f"   contador: {resultado_malo['contador']} (✅ correcto)")
+    print(f"   mensajes: {resultado_malo['mensajes']}")
+    print(f"\n   ⚠️  PROBLEMA: Solo tiene 1 mensaje en lugar de 3!")
+    print(f"   Cada nodo sobrescribió la lista en lugar de agregar.")
+
+    # --- Ejecutar grafo CORRECTO ---
+    print("\n" + "-" * 60)
+    print("✅ GRAFO CORRECTO (concatena mensajes)")
+    print("-" * 60)
+
+    grafo_bueno = crear_grafo_correcto()
+    resultado_bueno = grafo_bueno.invoke(estado_inicial)
+
+    print(f"\n📥 Estado inicial: mensajes = []")
+    print(f"\n📤 Estado final:")
+    print(f"   contador: {resultado_bueno['contador']} (✅ correcto)")
+    print(f"   mensajes: {resultado_bueno['mensajes']}")
+    print(f"\n   ✅ CORRECTO: Tiene los 3 mensajes acumulados!")
+    for i, msg in enumerate(resultado_bueno["mensajes"], 1):
+        print(f"      {i}. {msg}")
+
+    # --- Explicación ---
+    print("\n" + "=" * 60)
+    print("📚 ¿POR QUÉ OCURRE ESTO?")
+    print("=" * 60)
+    print("""
+    LangGraph maneja el state así:
+
+    1. Cada nodo RECIBE el state actual completo
+    2. Codo nodo RETORNA un dict con los campos a actualizar
+    3. LangGraph HACE MERGE de los campos retornados al state
+
+    ⚠️  El merge NO es acumulativo para listas:
+        - Si retornas {"mensajes": [nuevo]}, REEMPLAZA toda la lista
+        - Si retornas {"mensajes": state.mensajes + [nuevo]}, ACUMULA
+
+    Ejemplo paso a paso (INCORRECTO):
+        Estado inicial:  mensajes = []
+        Nodo 1 retorna:  {"mensajes": ["A"]}     → mensajes = ["A"]
+        Nodo 2 retorna:  {"mensajes": ["B"]}     → mensajes = ["B"]      ← ¡Perdió "A"!
+        Nodo 3 retorna:  {"mensajes": ["C"]}     → mensajes = ["C"]      ← ¡Perdió "B"!
+
+    Ejemplo paso a paso (CORRECTO):
+        Estado inicial:  mensajes = []
+        Nodo 1 retorna:  {"mensajes": [] + ["A"]}     → mensajes = ["A"]
+        Nodo 2 retorna:  {"mensajes": ["A"] + ["B"]}  → mensajes = ["A", "B"]
+        Nodo 3 retorna:  {"mensajes": ["A","B"] + ["C"]} → mensajes = ["A", "B", "C"]
+    """)
+
+
+# =============================================================================
 # MAIN
 # =============================================================================
 
@@ -202,3 +358,6 @@ if __name__ == "__main__":
 
     # 3. Mostrar estructura del grafo
     demo_visualizacion_grafo()
+
+    # 4. Demostrar concatenación vs sobrescritura
+    demo_concatenacion_vs_sobrescritura()

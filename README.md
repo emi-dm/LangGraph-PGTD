@@ -2,18 +2,19 @@
 
 Repositorio de ejemplos progresivos para aprender a construir agentes con LangGraph, desde lo más básico hasta patrones avanzados.
 
-## 📚 Ejemplos Disponibles
+## 📚 Ejemplos Disponibles (ordenados por complejidad)
 
-| Ejemplo | Nivel | Descripción |
-|---------|-------|-------------|
-| [ejemplo-agente-basico](./ejemplos/ejemplo-agente-basico/) | Principiante | Agente simple sin herramientas |
-| [ejemplo-agente-con-tools](./ejemplos/ejemplo-agente-con-tools/) | Intermedio | Agente con herramientas de archivos |
-| [ejemplo-agente-con-interrupciones](./ejemplos/ejemplo-agente-con-interrupciones/) | Avanzado | Human-in-the-Loop con interrupciones |
-| [ejemplo-agente-con-memoria](./ejemplos/ejemplo-agente-con-memoria/) | Intermedio | Memoria a corto plazo con InMemorySaver |
-| [ejemplo-agente-con-memoria-sqlite](./ejemplos/ejemplo-agente-con-memoria-sqlite/) | Intermedio | Memoria persistente con SQLite |
-| [ejemplo-agente-con-streaming](./ejemplos/ejemplo-agente-con-streaming/) | Intermedio | Streaming de tokens en tiempo real |
-| [ejemplo-agente-con-langfuse](./ejemplos/ejemplo-agente-con-langfuse/) | Intermedio | Observabilidad con Langfuse |
-| [ejemplo-deep-agents-documentador](./ejemplos/ejemplo-deep-agents-documentador/) | Avanzado | Sistema multiagente documentador |
+| # | Ejemplo | Nivel | Descripción |
+|---|---------|-------|-------------|
+| 1 | [1-ejemplo-state-pydantic](./ejemplos/1-ejemplo-state-pydantic/) | Básico | State con Pydantic (sin LLMs) - Validación y concatenación |
+| 2 | [2-ejemplo-agente-basico](./ejemplos/2-ejemplo-agente-basico/) | Principiante | Agente simple sin herramientas |
+| 3 | [3-ejemplo-agente-con-tools](./ejemplos/3-ejemplo-agente-con-tools/) | Intermedio | Agente con herramientas de archivos |
+| 4 | [4-ejemplo-agente-con-memoria](./ejemplos/4-ejemplo-agente-con-memoria/) | Intermedio | Memoria a corto plazo con InMemorySaver |
+| 5 | [5-ejemplo-agente-con-memoria-sqlite](./ejemplos/5-ejemplo-agente-con-memoria-sqlite/) | Intermedio | Memoria persistente con SQLite |
+| 6 | [6-ejemplo-agente-con-streaming](./ejemplos/6-ejemplo-agente-con-streaming/) | Intermedio | Streaming de tokens en tiempo real |
+| 7 | [7-ejemplo-agente-con-interrupciones](./ejemplos/7-ejemplo-agente-con-interrupciones/) | Avanzado | Human-in-the-Loop con interrupciones |
+| 8 | [8-ejemplo-agente-con-langfuse](./ejemplos/8-ejemplo-agente-con-langfuse/) | Intermedio | Observabilidad con Langfuse |
+| 9 | [9-ejemplo-deep-agents-documentador](./ejemplos/9-ejemplo-deep-agents-documentador/) | Avanzado | Sistema multiagente documentador |
 
 ## 🚀 Inicio Rápido
 
@@ -38,7 +39,7 @@ Repositorio de ejemplos progresivos para aprender a construir agentes con LangGr
 
 3. **Elige un ejemplo y navega a su directorio**:
    ```bash
-   cd ejemplos/ejemplo-agente-basico
+   cd ejemplos/2-ejemplo-agente-basico
    ```
 
 4. **Crea un entorno virtual** (recomendado):
@@ -61,14 +62,15 @@ LangGraph-PGTD/
 ├── README.md                 # Este archivo
 ├── pyproject.toml            # Configuración común del proyecto
 └── ejemplos/
-    ├── ejemplo-agente-basico/
-    ├── ejemplo-agente-con-tools/
-    ├── ejemplo-agente-con-interrupciones/
-    ├── ejemplo-agente-con-memoria/
-    ├── ejemplo-agente-con-memoria-sqlite/
-    ├── ejemplo-agente-con-streaming/
-    ├── ejemplo-agente-con-langfuse/
-    └── ejemplo-deep-agents-documentador/
+    ├── 1-ejemplo-state-pydantic/          # State con Pydantic (sin LLMs)
+    ├── 2-ejemplo-agente-basico/           # Agente simple
+    ├── 3-ejemplo-agente-con-tools/        # Agente con herramientas
+    ├── 4-ejemplo-agente-con-memoria/      # Memoria InMemory
+    ├── 5-ejemplo-agente-con-memoria-sqlite/ # Memoria SQLite
+    ├── 6-ejemplo-agente-con-streaming/    # Streaming
+    ├── 7-ejemplo-agente-con-interrupciones/ # Human-in-the-Loop
+    ├── 8-ejemplo-agente-con-langfuse/     # Observabilidad
+    └── 9-ejemplo-deep-agents-documentador/ # Multiagente
 ```
 
 ## 🛠️ Dependencias Comunes

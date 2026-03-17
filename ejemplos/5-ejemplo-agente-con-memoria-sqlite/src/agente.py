@@ -6,7 +6,7 @@ del agente en una base de datos SQLite, permitiendo que la memoria
 sobreviva entre ejecuciones del programa.
 
 Ejecución:
-    uv run ejemplos/ejemplo-agente-con-memoria-sqlite/src/agente.py
+    uv run ejemplos/5-ejemplo-agente-con-memoria-sqlite/src/agente.py
 
 Conceptos demostrados:
 - SqliteSaver para persistencia en SQLite

@@ -4,7 +4,72 @@
 
 Este ejemplo demuestra cómo crear un sistema de documentación multiagente usando **Deep Agents**, **Tavily**, **OpenRouter** y **Langfuse**, donde múltiples subagentes especializados colaboran para investigar, escribir y revisar documentación técnica en formato Markdown.
 
-## 🎯 Conceptos Clave
+## 📖 ¿Qué es Deep Agents?
+
+**Deep Agents** es un framework de agentes de código abierto construido sobre **LangGraph**, diseñado para tareas complejas y multi-paso que requieren planificación, uso de herramientas y delegación a sub-agentes.
+
+### Concepto: "Agent Harness"
+
+Deep Agents se define como un **"agent harness"** (arnés de agente). Esto significa que es el mismo bucle básico de llamadas a herramientas que otros frameworks de agentes, pero con **herramientas y capacidades integradas** que facilitan la construcción de agentes sofisticados.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     Deep Agents (Harness)                       │
+│                                                                 │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐             │
+│  │  Planning   │  │ File System │  │  Subagents  │  ← Built-in │
+│  │  (To-Do)    │  │  (Context)  │  │  (Delegate) │             │
+│  └─────────────┘  └─────────────┘  └─────────────┘             │
+│                                                                 │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐             │
+│  │   Memory    │  │ Human-in-   │  │    MCP      │  ← Built-in │
+│  │ (Persist)   │  │  the-Loop   │  │   Tools     │             │
+│  └─────────────┘  └─────────────┘  └─────────────┘             │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────┐           │
+│  │              LangGraph Runtime                  │  ← Base   │
+│  │  (Durable execution, streaming, checkpointing)  │           │
+│  └─────────────────────────────────────────────────┘           │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Arquitectura de Capas
+
+| Capa | Componente | Función |
+|------|------------|---------|
+| **Harness** | Deep Agents SDK | Herramientas y capacidades integradas |
+| **Runtime** | LangGraph | Ejecución durable, streaming, checkpointing |
+| **Building Blocks** | LangChain | Modelos, herramientas, mensajes |
+
+### Capacidades Integradas
+
+| Capacidad | Descripción |
+|-----------|-------------|
+| **Planificación** | Sistema de to-do list para descomponer tareas complejas en pasos |
+| **Sistema de archivos** | Lectura/escritura de archivos para gestión de contexto (memoria, disco, sandboxes) |
+| **Subagentes** | Delegación de trabajo a agentes especializados con contexto aislado |
+| **Memoria persistente** | Información que persiste entre conversaciones y threads |
+| **Human-in-the-Loop** | Aprobación humana para operaciones sensibles |
+| **MCP Tools** | Carga de herramientas externas vía Model Context Protocol |
+| **Skills** | Capacidades personalizables almacenadas en directorios de skills |
+
+### ¿Cuándo usar Deep Agents?
+
+| ✅ Usar Deep Agents cuando... | ❌ No usar Deep Agents cuando... |
+|-------------------------------|----------------------------------|
+| Tareas complejas multi-paso | Agentes simples con pocas herramientas |
+| Necesitas planificación y descomposición | Solo necesitas un loop básico de tool-calling |
+| Gestión de contexto grande vía archivos | El contexto cabe fácilmente en memoria |
+| Delegación a subagentes especializados | Un solo agente puede manejar todo |
+| Ejecución de largo tiempo | Tareas rápidas y de una sola vez |
+
+### Alternativas más simples
+
+Para agentes más simples, considera:
+- **LangChain `create_agent`** — Agente básico con tool-calling
+- **LangGraph custom workflow** — Grafo personalizado con nodos específicos
+
+## 🎯 Conceptos Clave del Ejemplo
 
 | Concepto | Descripción |
 |----------|-------------|
@@ -77,7 +142,7 @@ cp ../../.env.example ../../.env
 | Variable | Descripción | Requerida |
 |----------|-------------|-----------|
 | `OPENROUTER_API_KEY` | API key de OpenRouter | ✅ Sí |
-| `OPENROUTER_MODEL` | Modelo a usar (default: anthropic/claude-sonnet-4) | Opcional |
+| `OPENROUTER_MODEL` | Modelo a usar (default: openai/gpt-4.1-mini) | Opcional |
 | `TAVILY_API_KEY` | API key de Tavily para búsqueda web | ✅ Sí |
 | `LANGFUSE_SECRET_KEY` | Secret key de Langfuse | ✅ Sí |
 | `LANGFUSE_PUBLIC_KEY` | Public key de Langfuse | ✅ Sí |

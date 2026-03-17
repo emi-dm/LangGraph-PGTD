@@ -8,6 +8,7 @@ Ejemplo básico que demuestra cómo LangGraph gestiona el **State** usando un mo
 - ✅ Validación de tipos en tiempo de ejecución
 - ✅ Coerción automática de tipos (ej: `"5"` → `5`)
 - ✅ Cómo los nodos leen y actualizan el estado
+- ✅ **Por qué debes concatenar con el state anterior** (no sobrescribir)
 - ✅ Limitaciones conocidas (el output es dict, no Pydantic)
 
 ## Conceptos clave
@@ -37,6 +38,38 @@ class MiState(BaseModel):
 | **Documentación** | Los `Field(description=...)` documentan el estado |
 | **IDE support** | Autocompletado y type hints mejorados |
 
+### ⚠️ CRÍTICO: Concatenar vs Sobrescribir
+
+**LangGraph NO acumula automáticamente los retornos de los nodos.** Cada nodo recibe el state actual y debe decidir cómo actualizarlo.
+
+```python
+# ❌ INCORRECTO: Sobrescribe la lista, pierde mensajes anteriores
+def nodo_malo(state: MiState) -> dict:
+    return {"mensajes": ["Nuevo mensaje"]}  # ¡Pierde todo lo anterior!
+
+# ✅ CORRECTO: Concatena con los mensajes anteriores
+def nodo_bueno(state: MiState) -> dict:
+    return {"mensajes": state.mensajes + ["Nuevo mensaje"]}
+```
+
+**¿Por qué ocurre esto?**
+
+LangGraph hace un **merge** de los campos retornados, pero para listas el merge **reemplaza** el valor, no lo acumula:
+
+```
+Paso a paso (INCORRECTO):
+    Estado inicial:  mensajes = []
+    Nodo 1 retorna:  {"mensajes": ["A"]}     → mensajes = ["A"]
+    Nodo 2 retorna:  {"mensajes": ["B"]}     → mensajes = ["B"]      ← ¡Perdió "A"!
+    Nodo 3 retorna:  {"mensajes": ["C"]}     → mensajes = ["C"]      ← ¡Perdió "B"!
+
+Paso a paso (CORRECTO):
+    Estado inicial:  mensajes = []
+    Nodo 1 retorna:  {"mensajes": [] + ["A"]}       → mensajes = ["A"]
+    Nodo 2 retorna:  {"mensajes": ["A"] + ["B"]}    → mensajes = ["A", "B"]
+    Nodo 3 retorna:  {"mensajes": ["A","B"] + ["C"]} → mensajes = ["A", "B", "C"]
+```
+
 ### Limitaciones conocidas
 
 1. **El output NO es Pydantic**: `graph.invoke()` retorna un `dict`, no una instancia del modelo
@@ -57,7 +90,7 @@ graph LR
 
 ```bash
 # Desde la raíz del ejemplo
-cd ejemplos/ejemplo-state-pydantic
+cd ejemplos/1-ejemplo-state-pydantic
 
 # Crear entorno virtual
 python -m venv .venv
@@ -104,6 +137,36 @@ DEMOSTRACIÓN: Ejecución del grafo
       1. ¡Hola, Emi! Bienvenido al ejemplo de State con Pydantic.
       2. Iteración #1: Procesando con 1 mensajes acumulados.
       3. ¡Adiós, Emi! Se procesaron 2 pasos en total.
+
+============================================================
+DEMOSTRACIÓN: Concatenación vs Sobrescritura
+============================================================
+
+❌ GRAFO INCORRECTO (sobrescribe mensajes)
+------------------------------------------------------------
+
+📥 Estado inicial: mensajes = []
+
+📤 Estado final:
+   contador: 3 (✅ correcto)
+   mensajes: ['Mensaje del nodo 3']
+
+   ⚠️  PROBLEMA: Solo tiene 1 mensaje en lugar de 3!
+   Cada nodo sobrescribió la lista en lugar de agregar.
+
+✅ GRAFO CORRECTO (concatena mensajes)
+------------------------------------------------------------
+
+📥 Estado inicial: mensajes = []
+
+📤 Estado final:
+   contador: 3 (✅ correcto)
+   mensajes: ['Mensaje del nodo 1', 'Mensaje del nodo 2', 'Mensaje del nodo 3']
+
+   ✅ CORRECTO: Tiene los 3 mensajes acumulados!
+      1. Mensaje del nodo 1
+      2. Mensaje del nodo 2
+      3. Mensaje del nodo 3
 ```
 
 ## Comparación: TypedDict vs Pydantic
