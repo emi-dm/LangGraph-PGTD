@@ -1,0 +1,7 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "agente-con-interrupciones": "./src/agente.py:graph"
+  },
+  "env": ".env"
+}

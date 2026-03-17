@@ -1,0 +1,17 @@
+[project]
+name = "ejemplo-agente-con-memoria"
+version = "0.1.0"
+description = "Ejemplo de agente LangGraph con memoria a corto plazo (InMemorySaver)"
+dependencies = [
+    "langgraph",
+    "langchain-openai",
+    "langchain-core",
+    "python-dotenv"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
