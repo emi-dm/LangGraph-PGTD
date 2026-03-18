@@ -2,7 +2,7 @@
 name = "langgraph-pgtd"
 version = "0.1.0"
 description = "Ejemplos progresivos de agentes LangGraph"
-requires-python = ">=3.11"
+requires-python = "==3.11.3"
 dependencies = [
     "langgraph>=0.2.0",
     "langchain-openai>=0.2.0",
