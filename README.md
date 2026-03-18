@@ -90,16 +90,20 @@ Para ejecutar los ejemplos, necesitarás obtener las siguientes API keys:
    # Edita .env y añade tu OPENROUTER_API_KEY
    ```
 
-3. **Elige un ejemplo y navega a su directorio**:
-   ```bash
-   cd 2-ejemplo-agente-basico
-   ```
+3. **Crea un entorno virtual** (recomendado):
 
-4. **Crea un entorno virtual** (recomendado):
    ```bash
    uv sync
    ```
-5. **Ejecuta el ejemplo**:
+
+4. **Elige un ejemplo y navega a su directorio**:
+
+   ```bash
+   uv run 2-ejemplo-agente-basico/src/agente.py
+   ```
+
+
+5. **Ejecuta el ejemplo** (usa `langgraph dev` para ejemplos con langgraph.json):
    ```bash
    langgraph dev  # Para ejemplos con langgraph.json
    # o
@@ -134,7 +138,11 @@ Todos los ejemplos comparten las siguientes dependencias:
 
 - `langgraph` - Framework para construir agentes
 - `langchain-openai` - Integración con OpenAI/OpenRouter
-- `langchain-core` - Componentes core de LangChain
+- `langchain` - Componentes core de LangChain
+- `langfuse` - Observabilidad y trazas de ejecución
+- `tavily` - Búsqueda web optimizada para LLMs
+- `markitdown` - Conversión de cualquier formato a Markdown
+- `deepagents` - Framework para sistemas multiagente creado por LangChain
 - `python-dotenv` - Gestión de variables de entorno
 - `langgraph-cli[inmem]` - CLI de LangGraph (para ejemplos con langgraph.json)
 
